@@ -18,6 +18,7 @@
       <h1 class="f1 athelas mt3 mb1">
         {{- .Title -}}
       </h1>
+
       {{ with .Params.author }}
       <p class="tracked">
           By <strong>
@@ -31,7 +32,7 @@
       {{ end }}
       {{/* Hugo uses Go's date formatting is set by example. Here are two formats */}}
       <time class="f6 mv4 dib tracked" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
-        {{- .Date.Format "January 2, 2006" -}}
+        {{- .Date.Format "2 Jan 2006" -}}
       </time>
 
       {{/*
@@ -48,7 +49,22 @@
     <div class="nested-copy-line-height lh-copy {{ $.Param "post_content_classes"  | default "serif"}} f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l">
       {{- .Content -}}
       {{- partial "tags.html" . -}}
+      <a href="https://brid.gy/publish/twitter"></a>
       <div class="mt6 instapaper_ignoref">
+        <script type="text/javascript" charset="utf-8">
+          fetch('https://webmention.bitworking.org/Mentions', {
+            cache: 'no-cache',
+          }).then(function(resp) {
+            if (!resp.ok) {
+              return
+            }
+            resp.text().then(function(text) {
+              document.getElementById('mentions').innerHTML = text;
+            });
+          });
+        </script>
+        <div id=mentions>
+        </div>
       {{ if .Site.DisqusShortname }}
         {{ template "_internal/disqus.html" . }}
       {{ end }}
