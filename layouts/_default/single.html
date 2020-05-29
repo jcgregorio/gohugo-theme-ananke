@@ -5,7 +5,7 @@
 
 {{ define "main" }}
   {{ $section := .Site.GetPage "section" .Section }}
-  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+  <article class="h-entry flex-l flex-wrap justify-between mw8 center ph3">
     <header class="mt4 w-100">
       <aside class="instapaper_ignoref b helvetica tracked">
           {{/*
@@ -15,23 +15,26 @@
         {{with .CurrentSection.Title }}{{. | upper }}{{end}}
       </aside>
       {{ partial "social-share.html" . }}
-      <h1 class="f1 athelas mt3 mb1">
+      <h1 class="p-name f1 athelas mt3 mb1">
         {{- .Title -}}
       </h1>
 
-      {{ with .Params.author }}
-      <p class="tracked">
-          By <strong>
-          {{ if reflect.IsSlice . }}
-              {{ delimit . ", " | markdownify }}
-          {{else}}
-              {{ . | markdownify }}
-          {{ end }}
+      {{ with .Site.Author }}
+      <span class="tracked nested-links">
+          <strong>
+            <a class="  p-author h-card" href="https://bitworking.org/about/">
+              <img
+              style="display: none;"
+              src="https://bitworking.org/images/joe2016.jpg"
+              alt="Joe Gregorio"
+              class="photo u-photo"
+            />
+              {{ .name }}</a>
           </strong>
-      </p>
+        </span>
       {{ end }}
       {{/* Hugo uses Go's date formatting is set by example. Here are two formats */}}
-      <time class="f6 mv4 dib tracked" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+      <time class="dt-published f6 mv4 dib tracked" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
         {{- .Date.Format "2 Jan 2006" -}}
       </time>
 
@@ -47,7 +50,9 @@
       {{ end }}
     </header>
     <div class="nested-copy-line-height lh-copy {{ $.Param "post_content_classes"  | default "serif"}} f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l">
-      {{- .Content -}}
+      <div class="e-content">
+        {{- .Content -}}
+      </div>
       {{- partial "tags.html" . -}}
       <a href="https://brid.gy/publish/twitter"></a>
       <div class="mt6 instapaper_ignoref">
