@@ -8,8 +8,13 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     {{ hugo.Generator }}
     <link rel="preconnect" href="https://cdn.mathjax.org">
+    <link rel="preconnect" href="https://a.disquscdn.com">
+    <link rel="preconnect" href="https://b.disquscdn.com">
+    <link rel="preconnect" href="https://c.disquscdn.com">
+
     <meta name="description" content="{{ .Site.Params.description }}">
     <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+    <script src="/js/Luminous.min.js " type="text/javascript" charset="utf-8" async></script>
 
     {{ $stylesheet := .Site.Data.webpack_assets.app }}
     {{ with $stylesheet.css }}
