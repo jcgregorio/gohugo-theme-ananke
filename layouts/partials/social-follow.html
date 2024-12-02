@@ -72,3 +72,9 @@
   {{- partial "new-window-icon.html" . -}}
 </a>
 {{ end }}
+{{ with .Param "bluesky" }}
+<a href="{{ . }}" target="_blank" class="link-transition mastodon link dib z-999 pt3 pt0-l mr1" title="Bluesky link" rel="me" aria-label="follow on Bluesky——Opens in a new window">
+  {{ partial "svg/Bluesky_Logo.svg" (dict "size" $icon_size) }}
+  {{- partial "new-window-icon.html" . -}}
+</a>
+{{ end }}
